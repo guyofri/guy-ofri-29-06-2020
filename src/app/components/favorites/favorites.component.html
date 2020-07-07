@@ -1,0 +1,9 @@
+<h1>Favorites</h1>
+
+<div class="d-flex justify-content-center row">
+  <div *ngFor="let favoriteCity of favoriteCities" class="square rounded col-sm-4 col-md-3 col-11 col-lg-2">
+    <p>{{ favoriteCity.LocalizedName }}</p>
+    <p>{{ favoriteCity.temperature }} {{ favoriteCity.unit }}</p>
+    <p>{{ favoriteCity.weatherText }}</p>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+.square {
+  float: left;
+  margin: 5pt;
+  width: 72pt;
+  height: 92pt;
+  border: 1px solid black;
+  padding: 2% 3%;
+  text-align: center;
+}
+div, span, p, button, a, input {
+  font-weight: bold;
+  color: #000;
+}
+
+div, span, p {
+  font-size: 15px;
+}
+

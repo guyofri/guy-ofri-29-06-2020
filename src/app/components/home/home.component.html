@@ -1,0 +1,37 @@
+<p *ngIf="!forecasts && !currentWeather"><em>Loading...</em></p>
+<div>
+  <div class="row">
+    <div class="col">
+      <div class="form-group has-search" style="position:relative;">
+        <span class="fa fa-search form-control-feedback search-icon"></span>
+        <input type="text" class="form-control city-name" [(ngModel)]="cityName" (keyup)="getCitiesByPrefix()" name="cityName" [value]="cityName">
+        <ul  class="cities-ddl" *ngIf="citiesDropDownList.length > 0">
+          <li style="cursor:pointer" *ngFor="let cityPrefix of citiesDropDownList" (click)="getWeatherByCity($event)">{{cityPrefix.LocalizedName}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="float-left col">
+      <div>{{cityName}}</div>
+      <div>{{currentWeather.temperature}} {{currentWeather.unit}}</div>
+    </div>
+    <div class="float-right col">
+      <button class="float-right btn btn-outline-dark" (click)="addToFavorites()" *ngIf="!isInFavorites()">Add To Favorites</button>
+      <button class="float-right btn btn-outline-dark" (click)="removeFavorite()" *ngIf="isInFavorites()">Remove From Favorites</button>
+      <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-heart float-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+           [ngClass]="{'favorite': isInFavorites()}">
+        <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+      </svg>
+    </div>
+  </div>
+  <h1 class="weather-desc">{{currentWeather.weatherText}}</h1>
+  <div class="d-flex justify-content-center row">
+    <div *ngFor="let forecast of forecasts" class="square rounded col-sm-4 col-md-3 col-11 col-lg-2">
+      <p dateToDay value="{{forecast.Date}}">{{ forecast.Date }}</p>
+      <p>{{ forecast.Temperature.Minimum.Value }} {{ forecast.Temperature.Minimum.Unit }}</p>
+    </div>
+  </div>
+</div>
+
+
